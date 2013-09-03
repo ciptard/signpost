@@ -1,4 +1,4 @@
-Flat-File-CMS
+Markdown-CMS
 =============
 
 An incredibly simple content management system based on Markdown.
