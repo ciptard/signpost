@@ -94,8 +94,8 @@ class MarkdownCMS {
     public function apply_default_settings() {
         global $config;
         $defaults = array(
-            'site_title'	=> 'Markdown-CMS',
-            'theme'			=> 'default',
+            'site_title' => 'Markdown-CMS',
+            'theme'      => 'default',
         );
         foreach ($defaults as $field => $value) {
             if (!array_key_exists($field, $config)) {
