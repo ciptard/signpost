@@ -16,6 +16,6 @@ require('settings.php');
 require(INCLUDES_DIR . 'markdown.php');
 require(INCLUDES_DIR . 'load.php');
 
-$YaffCMS = new Yaff();
+$MarkdownCMS = new MarkdownCMS();
 
 ?>
