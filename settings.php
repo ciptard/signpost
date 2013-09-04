@@ -1,7 +1,8 @@
 <?php
 
 $y = array(
-	'base_url' => 'http://localhost:8888/YaffCMS/',
+	// Change the line below before you do anything else.
+	'base_url' => 'http://localhost/',
 
 	/*
 	 * Uncomment the lines below to override the default settings.
