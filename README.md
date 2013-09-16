@@ -3,10 +3,25 @@ Markdown-CMS
 
 Markdown-CMS is a flat file content management system, meaning there is no database required to store posts or pages. This results in a system that is faster, less error prone and requires very little time to setup.
 
+URI routes can easily be added for 
+
+Installation
+------------
+
+1. Download an extract the latest version of Markdown-CMS
+2. Upload or deploy the files to your server
+3. Modify the 'base_url' value within `settings.php` to reflect your installation's location
+4. Sit back and enjoy the lack of installation time!
+
+Requirements
+------------
+
+Coming soon.
+
 Documentation
 -------------
 
-###Creating Pages
+###Creating Content
 
 All pages and posts are marked up using [Markdown](http://daringfireball.net/projects/markdown/syntax); an easy to use, non-obstrusive text based formatting syntax. It is easy to pick up and widely used across many internet services (including GitHub).
 
