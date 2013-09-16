@@ -8,6 +8,7 @@ define('CONTENT_DIR', ROOT_DIR . 'content/');
 define('POSTS_DIR', ROOT_DIR . CONTENT_DIR . 'posts/');
 define('INCLUDES_DIR', ROOT_DIR . 'includes/');
 define('THEMES_DIR', ROOT_DIR . 'themes/');
+define('VERSION', '0.1');
 
 /*
  * Require the shiz.
