@@ -3,8 +3,6 @@ Markdown-CMS
 
 Markdown-CMS is a flat file content management system, meaning there is no database required to store posts or pages. This results in a system that is faster, less error prone and requires very little time to setup.
 
-URI routes can easily be added for 
-
 Installation
 ------------
 
