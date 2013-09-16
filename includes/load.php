@@ -62,7 +62,7 @@ class MarkdownCMS {
             'page_title'	=> $config['site_title'],
             'page_template'	=> 'default'
         );
-         foreach ($meta as $field => $value) {
+        foreach ($meta as $field => $value) {
             if (preg_match('/^[ \t\/*#@]*' . preg_quote($value, '/') . ':(.*)$/mi', $config['page_content'], $match) && $match[1]) {
                 $config[$field] = trim(preg_replace('/\s*(?:\*\/|\?>).*/', '', $match[1]));
             } else {
