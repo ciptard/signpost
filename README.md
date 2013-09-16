@@ -14,7 +14,8 @@ Installation
 Requirements
 ------------
 
-Coming soon.
+* PHP 5.2.4 or above
+* `mod_rewrite` enabled if you are using Apache
 
 Documentation
 -------------
