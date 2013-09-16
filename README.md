@@ -1,16 +1,18 @@
 Markdown-CMS
 =============
 
-An incredibly simple content management system based on Markdown.
+Markdown-CMS is a flat file content management system, meaning there is no database required to store posts or pages. This results in a system that is faster, less error prone and requires very little time to setup.
 
 Documentation
 -------------
 
 ###Creating Pages
 
-Each `.md` file within the 'content' directory is treated as a seperate page. If, for example, your website is located at `http://example.com`, `pages/products.md` can be accessed at `http://example.com/products` and `pages/index.md` can be accessed at `http://example.com`. URLs can be extended by creating subfolders, e.g. `pages/category/product.md` can be accessed at `http://example.com/category/product`.
+All pages and posts are marked up using [Markdown](http://daringfireball.net/projects/markdown/syntax); an easy to use, non-obstrusive text based formatting syntax. It is easy to pick up and widely used across many internet services (including GitHub).
 
-A list of examples is shown below:
+Each `.md` (Markdown) file within the 'pages' directory is treated as a seperate page. Therefore if, for example, your website was located at `http://example.com`, `pages/products.md` could be accessed from `http://example.com/products`, whilst `pages/index.md` could be accessed from `http://example.com`. URIs can be extended by creating subfolders, for instance `pages/category/product.md` could be accessed from `http://example.com/category/product`.
+
+A list of possible URIs is shown below:
 
 * `pages/index.md` --> `http://example.com`
 * `pages/page.md` --> `http://example.com/page`
@@ -18,11 +20,9 @@ A list of examples is shown below:
 * `pages/sub/page.md` --> `http://example.com/sub/page`
 * `pages/a/stupid/amount.md` --> `http://example.com/a/stupid/amount`
 
-If a file cannot be found, `pages/404.md` is displayed.
+If a file cannot be found, `pages/404.md` is used.
 
 ###Page Markup
-
-All `.md` files are marked up using [Markdown](http://daringfireball.net/projects/markdown/syntax) and therefore can also contain HTML.
 
 Meta can be applied to each page by adding a block comment at the top of the `.md` file. A 'Page Title' can be added to add the name of the page in the browser's title bar, and 'Page Template' can be used to determine a specific theme file to use. An example of a page's meta is shown below:
 
@@ -33,26 +33,28 @@ Page Template: fullwidth
 -->
 ```
 
-These values are added to the `$y` array (detailed below) and can be accessed from within the `.php` and `.md` files.
-
-###$y
-
-The `$y` variable is an array of values used throughout YaffCMS. These values can be used within any theme file. A selection of available values are shown below:
-
-* `$y['site_title']` - The title of your installation.
-* `$y['base_url']` - The URL of your installation.
-* `$y['theme']` - The name (slug) of the current theme.
-* `$y['theme_url']` - The URL of the current theme.
-* `$y['page_title']` - The current page's title.
-* `$y['page_template']` - The current page's template.
-* `$y['page_content']` - The current page's content.
-
-Custom values can be added in the `settings.php` file in the root directory of your installation.
-
-**All of these values (except for 'page\_content') can be accessed from within any `.md` file; just enclose the name of the value within '&#37;' symbols, e.g. if you would like to access `$y['page_title']`, &#37;page\_title&#37; must be used. This same syntax can be used with any custom values.**
+These meta values are also added to an array called `$config` (more about this later) which can be accessed from within any `.php` or `.md` file.
 
 ###Themes
 
-A simple theming system is used to style pages in YaffCMS. The minimum requirements of a theme is to contain just one file, `default.php` (the default page template).
+The minimum requirements of a theme is to contain just one file, `default.php` (the default page template).
 
-Page templates can be easily added to a theme by creating a new `.php` file. If a new file called `product.php` is added, the 'Page Template' meta value (within a `.md` file) will need to have the value of `product` to be used.
+You can change the theme Markdown-CMS uses by altering the `$config` array from within the `settings.php` file in the root directory of your installation.
+
+The 'Page Template' meta value within any `.md` file is used to determine which theme file to use when displaying the post/page. For example if the value is set to 'fullwidth', Markdown-CMS will use the `fullwidth.php` theme template (located in the root of the current theme's directory) to display the post/page.
+
+###Configuration
+
+The `$config` array is an set of values used throughout Markdown-CMS. These values can be used from within any theme file. A selection of available values are shown below:
+
+* `$config['site_title']` - The title of your installation.
+* `$config['base_url']` - The URL of your installation.
+* `$config['theme']` - The name (slug) of the current theme.
+* `$config['theme_url']` - The URL of the current theme.
+* `$config['page_title']` - The current page's title.
+* `$config['page_template']` - The current page's template.
+* `$config['page_content']` - The current page's content.
+
+Custom values can be added from within the `settings.php` file in the root directory of your installation.
+
+**All of the above values (except for 'page\_content') can also be accessed from within any `.md` file; simply enclose the name of the value within '&#37;' symbols. For example, if you want to access `$config['page_title']`, &#37;page\_title&#37; must be used. This same syntax can be used with any custom values.**
