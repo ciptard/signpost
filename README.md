@@ -24,17 +24,17 @@ Documentation
 
 All pages and posts are marked up using [Markdown](http://daringfireball.net/projects/markdown/syntax); an easy to use, non-obstrusive text based formatting syntax. It is easy to pick up and widely used across many internet services (including GitHub).
 
-Each `.md` (Markdown) file within the 'pages' directory is treated as a seperate page. Therefore if, for example, your website was located at `http://example.com`, `pages/products.md` could be accessed from `http://example.com/products`, whilst `pages/index.md` could be accessed from `http://example.com`. URIs can be extended by creating subfolders, for instance `pages/category/product.md` could be accessed from `http://example.com/category/product`.
+Each `.md` (Markdown) file within the 'content' directory is treated as a seperate page. Therefore if, for example, your website was located at `http://example.com`, `content/products.md` could be accessed from `http://example.com/products`, whilst `content/index.md` could be accessed from `http://example.com`. URIs can be extended by creating subfolders, for instance `content/category/product.md` could be accessed from `http://example.com/category/product`.
 
 A list of possible URIs is shown below:
 
-* `pages/index.md` --> `http://example.com`
-* `pages/page.md` --> `http://example.com/page`
-* `pages/sub/index.md` --> `http://example.com/sub` (same as above)
-* `pages/sub/page.md` --> `http://example.com/sub/page`
-* `pages/a/stupid/amount.md` --> `http://example.com/a/stupid/amount`
+* `content/index.md` --> `http://example.com`
+* `content/page.md` --> `http://example.com/page`
+* `content/sub/index.md` --> `http://example.com/sub` (same as above)
+* `content/sub/page.md` --> `http://example.com/sub/page`
+* `content/a/stupid/amount.md` --> `http://example.com/a/stupid/amount`
 
-If a file cannot be found, `pages/404.md` is used.
+If a file cannot be found, `content/404.md` is used.
 
 ###Page Markup
 
