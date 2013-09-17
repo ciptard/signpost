@@ -22,7 +22,7 @@ class MarkdownCMS {
 
             if ($_SERVER['REQUEST_URI'] != $_SERVER['PHP_SELF'])
                 $url = trim(preg_replace('/' . str_replace('/', '\/', str_replace('index.php', '', $_SERVER['PHP_SELF'])) . '/', '', $_SERVER['REQUEST_URI'], 1), '/');
-                
+            
             if ($url) {
                 $file = CONTENT_DIR . $url;
             } else {
@@ -122,7 +122,19 @@ class MarkdownCMS {
      */
     public function get_posts() {
         global $config;
-        $config['posts'] = glob(POSTS_DIR . "*.md");
+        foreach (glob(POSTS_DIR . "*.md") as $filename) {
+            $slug = substr($filename, 0, -3);
+            $post = new Post();
+            $post->setSlug($slug);
+            $post->setUrl($config['base_url'] . $slug);
+            // Extract content and read variables
+            $content = file_get_contents(POSTS_DIR . $filename);
+            $meta = extract_page_meta($content);
+            $post->setContent($content);
+            $post->setTitle($meta['page_title']);
+            $post->setTemplate($meta['page_template']);
+            $config['posts'][] = $post;
+        }
     }
     
 }
