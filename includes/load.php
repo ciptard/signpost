@@ -127,11 +127,11 @@ class MarkdownCMS {
             $content = file_get_contents(POSTS_DIR . $filename);
             $meta = extract_page_meta($content);
             $post = (object) array(
-                'title' => $meta['page_title'],
-                'content' => $content,
-                'slug' => $slug,
-                'url' => $config['base_url'] . $slug,
-                'date' => '',
+                'title'    => $meta['page_title'],
+                'content'  => $content,
+                'slug'     => $slug,
+                'url'      => $config['base_url'] . $slug,
+                'time'     => filemtime(POSTS_DIR . $filename),
                 'template' => $meta['page_template']
             );
             $config['posts'][] = $post;
