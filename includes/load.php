@@ -118,24 +118,23 @@ class MarkdownCMS {
      *
      * @since 0.1
      */
-    public function get_pages($dir) {
+    public function get_pages() {
         global $config;
-        if ($dir) {
-            foreach (glob(POSTS_DIR . "*.md") as $filename) {
-                $slug = substr($filename, 0, -3);
-                $content = file_get_contents(POSTS_DIR . $filename);
-                $meta = extract_page_meta($content);
-                $post = (object) array(
-                    'title'    => $meta['page_title'],
-                    'content'  => $content,
-                    'slug'     => $slug,
-                    'url'      => $config['base_url'] . $slug,
-                    'time'     => filemtime(POSTS_DIR . $filename),
-                    'template' => $meta['page_template']
-                );
-                $config['posts'][] = $post;
-            }
+        foreach (glob("content/posts/*.md") as $filename) {
+            $slug = substr($filename, 0, -3);
+            $content = file_get_contents($filename);
+            $this->extract_page_meta($content);
+            $post = (object) array(
+                'title'    => $config['page_title'],
+                'content'  => $content,
+                'slug'     => $slug,
+                'url'      => $config['base_url'] . $slug,
+                'time'     => filemtime($filename),
+                'template' => $config['page_template']
+            );
+            $config['posts'][] = $post;
         }
+        return $config['posts'];
     }
     
 }
