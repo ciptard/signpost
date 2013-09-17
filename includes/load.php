@@ -22,10 +22,18 @@ class MarkdownCMS {
 
             if ($_SERVER['REQUEST_URI'] != $_SERVER['PHP_SELF'])
                 $url = trim(preg_replace('/' . str_replace('/', '\/', str_replace('index.php', '', $_SERVER['PHP_SELF'])) . '/', '', $_SERVER['REQUEST_URI'], 1), '/');
-
-            $file = ($url ? CONTENT_DIR . $url : CONTENT_DIR . 'index');
-
-            is_dir($file) ? $file = CONTENT_DIR . $url . '/index.md' : $file .= '.md';
+                
+            if ($url) {
+                $file = CONTENT_DIR . $url;
+            } else {
+                $file = CONTENT_DIR . 'index';
+            }
+            
+            if (is_dir($file)) {
+                $file = CONTENT_DIR . $url . '/index.md';
+            } else {
+                $file .= '.md';
+            }
 
             if (file_exists($file)) {
                 $config['page_content'] = file_get_contents($file);
@@ -34,16 +42,18 @@ class MarkdownCMS {
                 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
             }
 
-            $this->get_page_meta();
+            $this->extract_page_meta($config['page_content']);
             $config['page_content'] = preg_replace('/<!--[\s\S]*?-->/', '', $config['page_content']);
             $this->extract_vars();
             $config['page_content'] = Markdown($config['page_content']);
-
+            
+            $this->get_posts();
+            
+            extract($config);
             include(THEMES_DIR . $config['theme'] . '/' . $config['page_template'] . '.php');
         } else {
             die('\'base_url\' value does not exist. Please add the desired URL of your installation in \'settings.php\'');
         }
-        $this->get_posts();
     }
     
     /**
@@ -52,7 +62,7 @@ class MarkdownCMS {
      *
      * @since 0.1
      */
-    public function get_page_meta() {
+    public function extract_page_meta($content = "") {
         global $config;
         $meta = array(
             'page_title'	=> 'Page Title',
@@ -63,7 +73,7 @@ class MarkdownCMS {
             'page_template'	=> 'default'
         );
         foreach ($meta as $field => $value) {
-            if (preg_match('/^[ \t\/*#@]*' . preg_quote($value, '/') . ':(.*)$/mi', $config['page_content'], $match) && $match[1]) {
+            if (preg_match('/^[ \t\/*#@]*' . preg_quote($value, '/') . ':(.*)$/mi', $content, $match) && $match[1]) {
                 $config[$field] = trim(preg_replace('/\s*(?:\*\/|\?>).*/', '', $match[1]));
             } else {
                 $config[$field] = $defaults[$field];
