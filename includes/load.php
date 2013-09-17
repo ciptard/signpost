@@ -124,15 +124,16 @@ class MarkdownCMS {
         global $config;
         foreach (glob(POSTS_DIR . "*.md") as $filename) {
             $slug = substr($filename, 0, -3);
-            $post = new Post();
-            $post->setSlug($slug);
-            $post->setUrl($config['base_url'] . $slug);
-            // Extract content and read variables
             $content = file_get_contents(POSTS_DIR . $filename);
             $meta = extract_page_meta($content);
-            $post->setContent($content);
-            $post->setTitle($meta['page_title']);
-            $post->setTemplate($meta['page_template']);
+            $post = (object) array(
+                'title' => $meta['page_title'],
+                'content' => $content,
+                'slug' => $slug,
+                'url' => $config['base_url'] . $slug,
+                'date' => '',
+                'template' => $meta['page_template']
+            );
             $config['posts'][] = $post;
         }
     }
