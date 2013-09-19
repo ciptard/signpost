@@ -36,7 +36,7 @@ class MarkdownCMS {
             if (file_exists($file)) {
                 $page = $this->extract($file);
             } else {
-                $config['page_content'] = file_get_contents(CONTENT_DIR . '404.md');
+                $page = $this->extract(CONTENT_DIR . '404.md');
                 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
             }
 
@@ -126,6 +126,7 @@ class MarkdownCMS {
     public function get_posts() {
         global $config;
         foreach (glob("content/posts/*.md") as $filename) {
+            // TODO Remove any posts that are named index.md
             $pages[] = $this->extract($filename);
         }
         return $pages;
