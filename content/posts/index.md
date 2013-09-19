@@ -1,5 +1,4 @@
 <!--
-Title: Posts
+Title: Wahoo!
+Template: blog
 -->
-
-The page will contain a list of your latest posts.
