@@ -8,7 +8,7 @@ $config = array(
 	 * Uncomment the lines below to override the default settings.
 	 */
 
-	// 'site_title' => 'YaffCMS',
+	// 'site_title' => 'Markdown-CMS',
 	// 'theme' => 'default'
 
 	/*
