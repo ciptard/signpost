@@ -1,9 +1,6 @@
 <!--
-Page Title: First Post
+Title: First Post
 -->
-
-First Post
-==========
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tellus nunc, condimentum et blandit sit amet, vulputate sit amet magna. Fusce aliquam, enim at dapibus egestas, nisl justo dapibus urna, id viverra lectus elit in nunc. Vivamus tristique convallis purus in euismod. Vivamus tortor ipsum, facilisis ac dapibus vitae, ultricies eget lectus. Nunc ultricies ligula vel dui pulvinar at tempor ligula sodales. Curabitur vehicula risus in ipsum hendrerit vitae venenatis augue scelerisque. In vel pretium dui. Pellentesque et rutrum mi. Morbi pretium, urna dapibus iaculis porttitor, nisl lorem volutpat velit, vel placerat elit ligula at leo. Suspendisse semper aliquam blandit. Donec dignissim consectetur tortor quis vulputate. Morbi nec arcu ut magna dignissim gravida. Cras eros magna, tincidunt quis dictum sed, tincidunt ullamcorper elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse iaculis consequat sapien sollicitudin blandit.
 

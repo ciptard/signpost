@@ -1,8 +1,5 @@
 <!--
-Page Title: Posts
+Title: Posts
 -->
-
-Posts
-=====
 
 The page will contain a list of your latest posts.

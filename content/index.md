@@ -1,6 +1,6 @@
 <!--
-Page Title: Wahoo!
-Page Template: default
+Title: Wahoo!
+Template: default
 -->
 
 Wahoo!

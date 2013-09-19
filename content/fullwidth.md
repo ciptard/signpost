@@ -1,6 +1,6 @@
 <!--
-Page Title: Full Width
-Page Template: fullwidth
+Title: Full Width
+Template: fullwidth
 -->
 
 Full Width

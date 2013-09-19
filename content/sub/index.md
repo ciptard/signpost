@@ -1,5 +1,5 @@
 <!--
-Page Title: Subpage Index
+Title: Subpage Index
 -->
 
 Subpage Index

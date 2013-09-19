@@ -1,5 +1,5 @@
 <!--
-Page Title: Subpage
+Title: Subpage
 -->
 
 Subpage
