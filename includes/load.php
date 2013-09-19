@@ -73,14 +73,14 @@ class MarkdownCMS {
         global $config;
         $defaults = array(
             'site_title' => 'Markdown-CMS',
-            'theme'      => 'default',
-            'theme_url'  => $config['base_url'] . 'themes/' . $config['theme']
+            'theme'      => 'default'
         );
         foreach ($defaults as $field => $value) {
             if (!array_key_exists($field, $config)) {
                 $config[$field] = $value;
             }
         }
+        $config['theme_url'] = $config['base_url'] . 'themes/' . $config['theme'];
     }
 
     public function extract($file) {
