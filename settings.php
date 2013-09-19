@@ -12,12 +12,9 @@ $config = array(
 	// 'theme' => 'default'
 
 	/*
-	 * You can create your own setting and use it in your .php and .txt files.
-	 * For instance, a setting called 'hello' can be accessed by typing %hello%
-	 * in your page's .txt file and $y['hello'] in your .php files. Cool, huh?
-	 *
-	 * Make sure you don't name any of your settings 'page_content'. If you do,
-	 * the world will end.
+	 * You can also create your own custom setting and use them in your .php and
+	 * .md files. For example, a setting called 'hello' can be accessed by typing
+	 * %hello% in your page's .md file or $config['hello'] in your .php files.
 	 */
 
 	// 'hello' => 'custom_value'
