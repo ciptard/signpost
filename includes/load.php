@@ -23,59 +23,29 @@ class MarkdownCMS {
             if ($_SERVER['REQUEST_URI'] != $_SERVER['PHP_SELF'])
                 $url = trim(preg_replace('/' . str_replace('/', '\/', str_replace('index.php', '', $_SERVER['PHP_SELF'])) . '/', '', $_SERVER['REQUEST_URI'], 1), '/');
             
-            if ($url) {
+            if ($url)
                 $file = CONTENT_DIR . $url;
-            } else {
+            else
                 $file = CONTENT_DIR . 'index';
-            }
             
-            if (is_dir($file)) {
+            if (is_dir($file))
                 $file = CONTENT_DIR . $url . '/index.md';
-            } else {
+            else
                 $file .= '.md';
-            }
 
             if (file_exists($file)) {
-                $config['page_content'] = file_get_contents($file);
+                $page = $this->extract($file);
             } else {
                 $config['page_content'] = file_get_contents(CONTENT_DIR . '404.md');
                 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
             }
 
-            $this->extract_page_meta($config['page_content']);
-            $config['page_content'] = preg_replace('/<!--[\s\S]*?-->/', '', $config['page_content']);
-            $this->extract_vars();
-            $config['page_content'] = Markdown($config['page_content']);
-            
-            extract($config);
-            include(THEMES_DIR . $config['theme'] . '/' . $config['page_template'] . '.php');
+            $page->content = preg_replace('/<!--[\s\S]*?-->/', '', $page->content);
+            $posts = $this->get_posts();
+
+            include(THEMES_DIR . $config['theme'] . '/' . $page->template . '.php');
         } else {
             die('\'base_url\' value does not exist. Please add the desired URL of your installation in \'settings.php\'');
-        }
-    }
-    
-    /**
-     * Retrieves the meta information from a .md page file and adds the fields
-     * to the global $config array.
-     *
-     * @since 0.1
-     */
-    public function extract_page_meta($content = "") {
-        global $config;
-        $meta = array(
-            'page_title'	=> 'Page Title',
-            'page_template'	=> 'Page Template'
-        );
-        $defaults = array(
-            'page_title'	=> $config['site_title'],
-            'page_template'	=> 'default'
-        );
-        foreach ($meta as $field => $value) {
-            if (preg_match('/^[ \t\/*#@]*' . preg_quote($value, '/') . ':(.*)$/mi', $content, $match) && $match[1]) {
-                $config[$field] = trim(preg_replace('/\s*(?:\*\/|\?>).*/', '', $match[1]));
-            } else {
-                $config[$field] = $defaults[$field];
-            }
         }
     }
 
@@ -104,13 +74,48 @@ class MarkdownCMS {
         $defaults = array(
             'site_title' => 'Markdown-CMS',
             'theme'      => 'default',
+            'theme_url'  => $config['base_url'] . 'themes/' . $config['theme']
         );
         foreach ($defaults as $field => $value) {
             if (!array_key_exists($field, $config)) {
                 $config[$field] = $value;
             }
         }
-        $config['theme_url'] = $config['base_url'] . 'themes/' . $config['theme'];
+    }
+
+    public function extract($file) {
+        global $config;
+        $meta = array(
+            'title'    => 'Title',
+            'template' => 'Template'
+        );
+        $defaults = array(
+            'template' => 'default'
+        );
+        $content = file_get_contents($file);
+        foreach ($meta as $field => $value) {
+            if (preg_match('/^[ \t\/*#@]*' . preg_quote($value, '/') . ':(.*)$/mi', $content, $match) && $match[1]) {
+                $fields[$field] = trim(preg_replace('/\s*(?:\*\/|\?>).*/', '', $match[1]));
+            } else {
+                if ($defaults[$field] != "") {
+                    $fields[$field] = $defaults[$field];
+                } else {
+                    $fields[$field] = "";
+                }
+            }
+        }
+
+        $slug = substr(current(array_slice(explode("/", $file), -1)), 0, -3);
+        $url = current(array_slice(explode("/", $file), -2));
+        $info = array(
+            'content'  => Markdown($content),
+            'slug'     => $slug,
+            'url'      => $config['base_url'] . $url . '/' . $slug,
+            'time'     => filemtime($file),
+        );
+
+        $page = array_merge($info, $fields);
+        return (object) $page;
     }
 
     /**
@@ -118,23 +123,12 @@ class MarkdownCMS {
      *
      * @since 0.1
      */
-    public function get_pages() {
+    public function get_posts() {
         global $config;
         foreach (glob("content/posts/*.md") as $filename) {
-            $slug = substr($filename, 0, -3);
-            $content = file_get_contents($filename);
-            $this->extract_page_meta($content);
-            $post = (object) array(
-                'title'    => $config['page_title'],
-                'content'  => $content,
-                'slug'     => $slug,
-                'url'      => $config['base_url'] . $slug,
-                'time'     => filemtime($filename),
-                'template' => $config['page_template']
-            );
-            $config['posts'][] = $post;
+            $pages[] = $this->extract($filename);
         }
-        return $config['posts'];
+        return $pages;
     }
     
 }
