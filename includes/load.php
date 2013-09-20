@@ -33,7 +33,7 @@ class MarkdownCMS {
             else
                 $file .= '.md';
 
-            if (file_exists($file)) {
+            if (file_exists($file) && ($this->extract($file)->status == "publish")) {
                 $page = $this->extract($file);
             } else {
                 $page = $this->extract(CONTENT_DIR . '404.md');
@@ -41,7 +41,6 @@ class MarkdownCMS {
             }
 
             $page->content = preg_replace('/<!--[\s\S]*?-->/', '', $page->content);
-            $posts = $this->get_posts();
 
             include(THEMES_DIR . $config['theme'] . '/' . $page->template . '.php');
         } else {
@@ -87,10 +86,12 @@ class MarkdownCMS {
         global $config;
         $meta = array(
             'title'    => 'Title',
-            'template' => 'Template'
+            'template' => 'Template',
+            'status'   => 'Status'
         );
         $defaults = array(
-            'template' => 'default'
+            'template' => 'default',
+            'status'   => 'publish'
         );
         $content = file_get_contents($file);
         foreach ($meta as $field => $value) {
@@ -124,10 +125,16 @@ class MarkdownCMS {
      * @since 0.1
      */
     public function get_posts() {
+        return $this->loop("posts");
+    }
+
+    public function loop($location = "") {
         global $config;
-        foreach (glob("content/posts/*.md") as $filename) {
+        foreach (glob(CONTENT_DIR . $location . "/*.md") as $filename) {
             // TODO Remove any posts that are named index.md
-            $pages[] = $this->extract($filename);
+            $page = $this->extract($filename);
+            if ($page->status == "publish")
+                $pages[] = $page;
         }
         return $pages;
     }
