@@ -19,31 +19,30 @@ class MarkdownCMS {
         global $config;
         if (isset($config['base_url']) && $config['base_url']) {
             $this->apply_default_settings();
-
+            // Find segment of URL relavant to the page's filename.
             if ($_SERVER['REQUEST_URI'] != $_SERVER['PHP_SELF'])
                 $url = trim(preg_replace('/' . str_replace('/', '\/', str_replace('index.php', '', $_SERVER['PHP_SELF'])) . '/', '', $_SERVER['REQUEST_URI'], 1), '/');
-            
+            // Detect whether the URL is the homepage.
             if ($url)
                 $file = CONTENT_DIR . $url;
             else
                 $file = CONTENT_DIR . 'index';
-            
+            // Detect whether the URL is directory name.
             if (is_dir($file))
                 $file = CONTENT_DIR . $url . '/index.md';
             else
                 $file .= '.md';
-
+            // Send a 404 error if a page isn't found or it is unpublished.
             if (file_exists($file) && ($this->extract($file)->status == "publish")) {
                 $page = $this->extract($file);
             } else {
                 $page = $this->extract(CONTENT_DIR . '404.md');
                 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
             }
-
-            $page->content = preg_replace('/<!--[\s\S]*?-->/', '', $page->content);
-
+            // Include relevant theme template (specified within the page meta).
             include(THEMES_DIR . $config['theme'] . '/' . $page->template . '.php');
         } else {
+            // Prevent the installation from running if the base_url variable isn't set.
             die('\'base_url\' value does not exist. Please add the desired URL of your installation in \'settings.php\'');
         }
     }
@@ -81,7 +80,14 @@ class MarkdownCMS {
         }
         $config['theme_url'] = $config['base_url'] . 'themes/' . $config['theme'];
     }
-
+    
+    /**
+     * Extracts information (meta etc.) from a page's .md file.
+     * 
+     * @param string $file The location of the .md file.
+     * @return object An object representing the page.
+     * @since 0.1
+     */
     public function extract($file) {
         global $config;
         $meta = array(
@@ -94,6 +100,7 @@ class MarkdownCMS {
             'status'   => 'publish'
         );
         $content = file_get_contents($file);
+        // Check through header comment to find meta values.
         foreach ($meta as $field => $value) {
             if (preg_match('/^[ \t\/*#@]*' . preg_quote($value, '/') . ':(.*)$/mi', $content, $match) && $match[1]) {
                 $fields[$field] = trim(preg_replace('/\s*(?:\*\/|\?>).*/', '', $match[1]));
@@ -105,29 +112,27 @@ class MarkdownCMS {
                 }
             }
         }
-
+        // Populate object's fields with page information.
         $slug = substr(current(array_slice(explode("/", $file), -1)), 0, -3);
         $url = current(array_slice(explode("/", $file), -2));
         $info = array(
-            'content'  => Markdown($content),
+            'content'  => Markdown(preg_replace('/<!--[\s\S]*?-->/', '', $content)),
             'slug'     => $slug,
             'url'      => $config['base_url'] . $url . '/' . $slug,
             'time'     => filemtime($file),
         );
-
-        $page = array_merge($info, $fields);
+        // Merge information about the file with the meta values within it.
+        $page = array_merge($fields, $info);
         return (object) $page;
     }
 
     /**
-     * Adds the ability to loop through 'posts'. Needs to be completed.
+     * Adds the ability to iterate through files (for blogs etc).
      *
+     * @param string $location Where the .md files to loop through are located.
+     * @return object[] An array of located page objects.
      * @since 0.1
      */
-    public function get_posts() {
-        return $this->loop("posts");
-    }
-
     public function loop($location = "") {
         global $config;
         foreach (glob(CONTENT_DIR . $location . "/*.md") as $filename) {
