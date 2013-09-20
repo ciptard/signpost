@@ -3,9 +3,6 @@ Title: Full Width
 Template: fullwidth
 -->
 
-Full Width
-==========
-
 **The purpose of this page is to demonstrate the ability to use different page templates within your CMS. The 'Page Template' attribute within the `.md` file is 'fullwidth', therefore this page is utilising the 'fullwidth.php' file in the default theme.**
 
 And now for some gibberish.
