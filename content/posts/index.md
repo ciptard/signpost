@@ -1,4 +1,4 @@
 <!--
-Title: Wahoo!
+Title: Blog
 Template: blog
 -->
