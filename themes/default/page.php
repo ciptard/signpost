@@ -1,8 +1,9 @@
 <?php include('header.php'); ?>
 
-<div id="container">
+<section class="container">
+  <small><a href="<?php echo $config['base_url']; ?>">&larr; Back to homepage</a></small>
   <h2><?php echo $page->title; ?></h2>
   <?php echo $page->content; ?>
-</div>
+</section>
 
 <?php include('footer.php'); ?>

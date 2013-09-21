@@ -96,7 +96,7 @@ class MarkdownCMS {
             'status'   => 'Status'
         );
         $defaults = array(
-            'template' => 'default',
+            'template' => 'page',
             'status'   => 'publish'
         );
         $content = file_get_contents($file);
@@ -136,10 +136,13 @@ class MarkdownCMS {
     public function loop($location = "") {
         global $config;
         foreach (glob(CONTENT_DIR . $location . "/*.md") as $filename) {
+            $slug = substr(current(array_slice(explode("/", $filename), -1)), 0, -3);
             // TODO Remove any posts that are named index.md
-            $page = $this->extract($filename);
-            if ($page->status == "publish")
-                $pages[] = $page;
+            if ($slug != "index") {
+                $page = $this->extract($filename);
+                if ($page->status == "publish")
+                    $pages[] = $page;
+            }
         }
         return $pages;
     }

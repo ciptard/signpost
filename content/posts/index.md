@@ -1,4 +1,4 @@
 <!--
 Title: Blog
-Template: blog
+Template: posts
 -->

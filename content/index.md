@@ -1,6 +1,4 @@
 <!--
-Title: Wahoo!
-Template: default
+Title: David Gauld
+Template: homepage
 -->
-
-It looks like you've successfully installed Markdown-CMS! Delete this sample page, create your own pages/posts and get writing!
