@@ -5,7 +5,7 @@
  *
  * @version 0.1
  */
-class MarkdownCMS {
+class MdCMS {
 
     /**
      * Constructor.
@@ -41,6 +41,8 @@ class MarkdownCMS {
                 $page = $this->extract(CONTENT_DIR . '404.md');
                 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
             }
+            // Include page functions.
+            include('page.php');
             // Detect if the page is the front page.
             $page->is_front_page = ($uri == $config['base_url']) ? true : false;
             // Include relevant theme template (specified within the page meta).
@@ -48,20 +50,6 @@ class MarkdownCMS {
         } else {
             // Prevent the installation from running if the base_url variable isn't set.
             die('\'base_url\' value does not exist. Please add the desired URL of your installation in \'settings.php\'');
-        }
-    }
-
-    /**
-     * Extracts variables from a .md page file. If the user types %hello%,
-     * this will look in $config[hello] to find the required value (settings.php).
-     *
-     * @since 0.1
-     */
-    public function extract_vars() {
-        global $config;
-        foreach ($config as $field => $value) {
-            if ($field != 'page_content')
-                $config['page_content'] = str_replace('%' . $field . '%', $value, $config['page_content']);
         }
     }
 
@@ -104,6 +92,10 @@ class MarkdownCMS {
             'status'   => 'publish'
         );
         $content = file_get_contents($file);
+        // Retrieve variables from inside a .md file (e.g. %base_url%).
+        foreach ($config as $field => $value) {
+            $content = str_replace('%' . $field . '%', $value, $content);
+        }
         // Check through header comment to find meta values.
         foreach ($meta as $field => $value) {
             if (preg_match('/^[ \t\/*#@]*' . preg_quote($value, '/') . ':(.*)$/mi', $content, $match) && $match[1]) {
@@ -120,10 +112,10 @@ class MarkdownCMS {
         $slug = substr(current(array_slice(explode("/", $file), -1)), 0, -3);
         $url = current(array_slice(explode("/", $file), -2));
         $info = array(
-            'content'  => Markdown(preg_replace('/<!--[\s\S]*?-->/', '', $content)),
-            'slug'     => $slug,
-            'url'      => $config['base_url'] . $url . '/' . $slug,
-            'time'     => filemtime($file),
+            'content' => Markdown(preg_replace('/<!--[\s\S]*?-->/', '', $content)),
+            'slug'    => $slug,
+            'url'     => $config['base_url'] . $url . '/' . $slug,
+            'time'    => filemtime($file),
         );
         // Merge information about the file with the meta values within it.
         $page = array_merge($fields, $info);
@@ -141,7 +133,6 @@ class MarkdownCMS {
         global $config;
         foreach (glob(CONTENT_DIR . $location . "/*.md") as $filename) {
             $slug = substr(current(array_slice(explode("/", $filename), -1)), 0, -3);
-            // TODO Remove any posts that are named index.md
             if ($slug != "index") {
                 $page = $this->extract($filename);
                 if ($page->status == "publish")
