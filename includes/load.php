@@ -19,6 +19,8 @@ class MarkdownCMS {
         global $config;
         if (isset($config['base_url']) && $config['base_url']) {
             $this->apply_default_settings();
+            // Gets the full URI of the current location.
+            $uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             // Find segment of URL relavant to the page's filename.
             if ($_SERVER['REQUEST_URI'] != $_SERVER['PHP_SELF'])
                 $url = trim(preg_replace('/' . str_replace('/', '\/', str_replace('index.php', '', $_SERVER['PHP_SELF'])) . '/', '', $_SERVER['REQUEST_URI'], 1), '/');
@@ -39,6 +41,8 @@ class MarkdownCMS {
                 $page = $this->extract(CONTENT_DIR . '404.md');
                 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
             }
+            // Detect if the page is the front page.
+            $page->is_front_page = ($uri == $config['base_url']) ? true : false;
             // Include relevant theme template (specified within the page meta).
             include(THEMES_DIR . $config['theme'] . '/' . $page->template . '.php');
         } else {
