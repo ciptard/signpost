@@ -6,7 +6,8 @@
 	<title><?php echo $page->title; ?> | <?php echo $config['site_title'] ?></title>
   <link rel="stylesheet" href="<?php echo $config['theme_url']; ?>/css/normalize.css" />
 	<link rel="stylesheet" href="<?php echo $config['theme_url']; ?>/css/style.css" />
-  <script type="text/javascript" src="//use.typekit.net/yoi6rpo.js"></script>
-  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <script src="//use.typekit.net/yoi6rpo.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
+  <script src="<?php echo $config['theme_url']; ?>/js/rainbow-custom.min.js"></script>
 </head>
 <body>

@@ -6,12 +6,13 @@ body {
 }
 
 a {
-  color: #57ad68;
+  color: #dd0000;
   text-decoration: none;
+  border-bottom: 1px solid #dd0000;
 }
 
 a:hover {
-  border-bottom: 1px solid #57ad68;
+  
 }
 
 a.noline {
@@ -19,11 +20,7 @@ a.noline {
 }
 
 p {
-  margin: 0 0 25px;
-}
-
-p:last-child {
-  margin: 0;
+  margin: 25px 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -44,7 +41,7 @@ h2 a {
 }
 
 h2 a:hover {
-  color: #57ad68;
+  color: #dd0000;
   border: none;
 }
 
@@ -83,6 +80,10 @@ article:last-child {
   text-align: center;
 }
 
+.profile .container .description {
+  margin-top: 35px;
+}
+
 .profile .container small {
   margin: 0;
 }
@@ -99,5 +100,86 @@ small {
   border-radius: 50%;
   width: 80px;
   height: 80px;
-  margin: 0 0 25px;
+  margin: 0 0 -10px;
+}
+
+/**
+ * GitHub theme
+ *
+ * @author Craig Campbell
+ * @version 1.0.4
+ */
+pre {
+    word-wrap: break-word;
+    padding: 30px;
+    line-height: 20px;
+    margin: 35px 0;
+}
+
+code {
+    border: 1px solid #eaeaea;
+    margin: 0px 2px;
+    padding: 0px 5px;
+}
+
+pre code {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+pre, code {
+    font-family: 'Monaco',courier,monospace;
+    color: #333;
+    background: #f8f8f8;
+}
+
+pre, pre code {
+    font-size: 14px;
+}
+
+pre .comment {
+    color: #998;
+}
+
+pre .support {
+    color: #0086B3;
+}
+
+pre .tag, pre .tag-name {
+    color: navy;
+}
+
+pre .keyword, pre .css-property, pre .vendor-prefix, pre .sass, pre .class, pre .id, pre .css-value, pre .entity.function, pre .storage.function {
+    font-weight: bold;
+}
+
+pre .css-property, pre .css-value, pre .vendor-prefix, pre .support.namespace {
+    color: #333;
+}
+
+pre .constant.numeric, pre .keyword.unit, pre .hex-color {
+    font-weight: normal;
+    color: #099;
+}
+
+pre .entity.class {
+    color: #458;
+}
+
+pre .entity.id, pre .entity.function {
+    color: #900;
+}
+
+pre .attribute, pre .variable {
+    color: teal;
+}
+
+pre .string, pre .support.value  {
+    font-weight: normal;
+    color: #d14;
+}
+
+pre .regexp {
+    color: #009926;
 }
