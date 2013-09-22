@@ -9,10 +9,15 @@ a {
   color: #dd0000;
   text-decoration: none;
   border-bottom: 1px solid #dd0000;
+  transition: all 0.07s linear;
+  -moz-transition: all 0.07s linear;
+  -webkit-transition: all 0.07s linear;
+  -o-transition: all 0.07s linear;
 }
 
 a:hover {
-  
+  color: #000000;
+  border-color: #000000;
 }
 
 a.noline {
