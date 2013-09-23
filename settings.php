@@ -9,7 +9,7 @@ $config = array(
 	 */
 
 	// 'site_title' => 'Markdown-CMS',
-	// 'theme' => 'default'
+	// 'theme' => 'dcgauld'
 
 	/*
 	 * You can also create your own custom setting and use them in your .php and
