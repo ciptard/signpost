@@ -25,15 +25,9 @@ class MdCMS {
             if ($_SERVER['REQUEST_URI'] != $_SERVER['PHP_SELF'])
                 $url = trim(preg_replace('/' . str_replace('/', '\/', str_replace('index.php', '', $_SERVER['PHP_SELF'])) . '/', '', $_SERVER['REQUEST_URI'], 1), '/');
             // Detect whether the URL is the homepage.
-            if ($url)
-                $file = CONTENT_DIR . $url;
-            else
-                $file = CONTENT_DIR . 'index';
+            $file = $url ? CONTENT_DIR . $url : CONTENT_DIR . 'index';
             // Detect whether the URL is directory name.
-            if (is_dir($file))
-                $file = CONTENT_DIR . $url . '/index.md';
-            else
-                $file .= '.md';
+            $file = is_dir($file) ? CONTENT_DIR . $url . '/index.md' : $file . '.md';
             // Send a 404 error if a page isn't found or it is unpublished.
             if (file_exists($file) && ($this->extract($file)->status == "publish")) {
                 $page = $this->extract($file);
@@ -41,8 +35,6 @@ class MdCMS {
                 $page = $this->extract(CONTENT_DIR . '404.md');
                 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
             }
-            // Include page functions.
-            include('page.php');
             // Detect if the page is the front page.
             $page->is_front_page = ($uri == $config['base_url']) ? true : false;
             // Include relevant theme template (specified within the page meta).
@@ -66,9 +58,8 @@ class MdCMS {
             'theme'      => 'default'
         );
         foreach ($defaults as $field => $value) {
-            if (!array_key_exists($field, $config)) {
+            if (!array_key_exists($field, $config))
                 $config[$field] = $value;
-            }
         }
         $config['theme_url'] = $config['base_url'] . 'themes/' . $config['theme'];
     }
@@ -133,7 +124,7 @@ class MdCMS {
         global $config;
         foreach (glob(CONTENT_DIR . $location . "/*.md") as $filename) {
             $slug = substr(current(array_slice(explode("/", $filename), -1)), 0, -3);
-            if ($slug != "index") {
+            if ($slug != "index" && $slug != "404") {
                 $page = $this->extract($filename);
                 if ($page->status == "publish")
                     $pages[] = $page;
