@@ -1,5 +1,4 @@
 <!--
-Title: Welcome!
+Title: David Gauld
+Template: homepage
 -->
-
-This is a paragraph, with **bold** text.
