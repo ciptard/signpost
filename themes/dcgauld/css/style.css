@@ -51,11 +51,11 @@ h2 a:hover {
 }
 
 article {
-  margin: 0 0 40px;
+  margin: 0 0 60px;
 }
 
-article p {
-  color: #555555;
+article p:last-child {
+  margin: 0;
 }
 
 article:last-child {
@@ -65,6 +65,7 @@ article:last-child {
 .date {
   display: block;
   margin-top: -10px;
+  margin-bottom: 20px;
   font-size: 15px;
   color: #aaaaaa;
 }
