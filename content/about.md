@@ -1,5 +1,5 @@
 <!--
-Title: A Little Bit About Me
+Title: About
 -->
 
 Hi, I'm David Gauld. I'm a **Software Engineer** at IBM, a **web designer/developer** and a Computer Science undergraduate from Portsmouth, England.
