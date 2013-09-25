@@ -6,9 +6,9 @@ body {
 }
 
 a {
-  color: #dd0000;
+  color: #00a7de;
   text-decoration: none;
-  border-bottom: 1px solid #dd0000;
+  border-bottom: 1px solid #00a7de;
   transition: all 0.07s linear;
   -moz-transition: all 0.07s linear;
   -webkit-transition: all 0.07s linear;
@@ -46,7 +46,7 @@ h2 a {
 }
 
 h2 a:hover {
-  color: #dd0000;
+  color: #00a7de;
   border: none;
 }
 
