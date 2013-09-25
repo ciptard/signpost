@@ -120,16 +120,23 @@ class MdCMS {
      * @return object[] An array of located page objects.
      * @since 0.1
      */
-    public function loop($location = "") {
+    public function loop($location = "", $limit = 0, $order = "asc") {
         global $config;
+        $i = 0;
         foreach (glob(CONTENT_DIR . $location . "/*.md") as $filename) {
+            if ($limit != 0 && $i == $limit)
+                break;
             $slug = substr(current(array_slice(explode("/", $filename), -1)), 0, -3);
             if ($slug != "index" && $slug != "404") {
                 $page = $this->extract($filename);
                 if ($page->status == "publish")
                     $pages[] = $page;
             }
+            $i++;
         }
+        usort($pages, function($a, $b) use ($order) {
+            return $order != "asc" ? $a->time - $b->time : $b->time - $a->time;
+        });
         return $pages;
     }
     
