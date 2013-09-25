@@ -9,7 +9,7 @@
     echo '<article>';
     echo '<h2><a href="' . $post->url . '">' . $post->title . '</a></h2>';
     echo '<span class="date">' . date('l, F n Y', $post->time) . '</span>';
-    echo '<p>' . $post->content . '</p>';
+    echo $post->content;
     echo '</article>';
   } ?>
 </section>
