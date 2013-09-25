@@ -25,19 +25,19 @@ a.noline {
 }
 
 p {
-  margin: 25px 0;
+  margin: 1.316em 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 25px;
+  margin: 0 0 1.316em;
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 2.105em;
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 1.316em;
 }
 
 h2 a {
@@ -51,7 +51,7 @@ h2 a:hover {
 }
 
 article {
-  margin: 0 0 60px;
+  margin: 0 0 3.158em;
 }
 
 article p:last-child {
@@ -64,16 +64,16 @@ article:last-child {
 
 .date {
   display: block;
-  margin-top: -10px;
-  margin-bottom: 20px;
-  font-size: 15px;
+  margin-top: -0.526em;
+  margin-bottom: 1.053em;
+  font-size: 0.789em;
   color: #aaaaaa;
 }
 
 .container {
-  max-width: 600px;
+  max-width: 31.579em;
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 3.158em 2.105em;
 }
 
 .profile {
@@ -81,13 +81,13 @@ article:last-child {
 }
 
 .profile .container {
-  max-width: 380px;
+  max-width: 20em;
   margin: 0 auto;
   text-align: center;
 }
 
 .profile .container .description {
-  margin-top: 35px;
+  margin-top: 1.842em;
 }
 
 .profile .container small {
@@ -95,18 +95,19 @@ article:last-child {
 }
 
 small {
-  font-size: 15px;
+  font-size: 0.789em;
   display: block;
-  margin: 0 0 25px;
+  margin: 0 0 1.316em;
 }
 
 .avatar {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  margin: 0 0 -10px;
+  width: 4.211em;
+  height: 4.211em;
+  margin: 0 0 -0.526em;
+}
 
 @media all and (max-width: 460px) {
   body {
@@ -122,26 +123,26 @@ small {
  */
 pre {
     word-wrap: break-word;
-    padding: 30px;
-    line-height: 20px;
-    margin: 35px 0;
+    padding: 1.579em;
+    line-height: 1.053em;
+    margin: 1.842em 0;
 }
 
 code {
     border: 1px solid #eaeaea;
-    margin: 0px 2px;
-    padding: 0px 5px;
+    margin: 0 0.105em;
+    padding: 0 0.263em;
 }
 
 pre code {
-    border: 0px;
-    padding: 0px;
-    margin: 0px;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
 pre, code {
-    font-family: 'Monaco',courier,monospace;
-    color: #333;
+    font-family: 'Monaco', courier, monospace;
+    color: #333333;
     background: #f8f8f8;
 }
 
@@ -150,11 +151,11 @@ pre, pre code {
 }
 
 pre .comment {
-    color: #998;
+    color: #999988;
 }
 
 pre .support {
-    color: #0086B3;
+    color: #0086b3;
 }
 
 pre .tag, pre .tag-name {
@@ -166,20 +167,20 @@ pre .keyword, pre .css-property, pre .vendor-prefix, pre .sass, pre .class, pre 
 }
 
 pre .css-property, pre .css-value, pre .vendor-prefix, pre .support.namespace {
-    color: #333;
+    color: #333333;
 }
 
 pre .constant.numeric, pre .keyword.unit, pre .hex-color {
     font-weight: normal;
-    color: #099;
+    color: #009999;
 }
 
 pre .entity.class {
-    color: #458;
+    color: #445588;
 }
 
 pre .entity.id, pre .entity.function {
-    color: #900;
+    color: #990000;
 }
 
 pre .attribute, pre .variable {
@@ -188,7 +189,7 @@ pre .attribute, pre .variable {
 
 pre .string, pre .support.value  {
     font-weight: normal;
-    color: #d14;
+    color: #dd1144;
 }
 
 pre .regexp {
