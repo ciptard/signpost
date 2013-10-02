@@ -73,7 +73,7 @@ Any of these values can be accessed from within a theme's `.php` file. For examp
 One useful feature of Markdown-CMS is the ability to mimic a blog. It achieves this by providing a simple variable `$posts` that holds an array of `.md` files from the `content/posts` directory (with meta data for each one), which can then be iterated through. The following example shows how this can be achieved.
 
 ```php
-<?php foreach ($posts as $post) {
+<?php foreach ($this->loop("posts") as $post) {
   echo '<h2><a href="' . $post->url . '">' . $post->title . '</a></h2>';
   echo '<p>' . $post->content . '</p>';
 } ?>
