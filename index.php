@@ -20,6 +20,6 @@ require('settings.php');
 require(INCLUDES_DIR . 'markdown.php');
 require(INCLUDES_DIR . 'load.php');
 
-$MdCMS = new MdCMS();
+$signpost = new Signpost();
 
 ?>

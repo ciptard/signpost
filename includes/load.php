@@ -1,11 +1,11 @@
 <?php
 
 /**
- * The Markdown-CMS class.
+ * The Signpost class.
  *
  * @version 0.1
  */
-class MdCMS {
+class Signpost {
 
     /**
      * Constructor.
@@ -54,7 +54,7 @@ class MdCMS {
     public function apply_default_settings() {
         global $config;
         $defaults = array(
-            'site_title' => 'Markdown-CMS',
+            'site_title' => 'Signpost',
             'theme'      => 'default'
         );
         foreach ($defaults as $field => $value) {
