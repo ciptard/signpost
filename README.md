@@ -1,10 +1,10 @@
-# Markdown-CMS
+# Signpost
 
-Markdown-CMS is a flat file content management system, meaning there is no database required to store posts or pages. This results in a system that is faster, less error prone and requires very little time to setup.
+Signpost is a flat file content management system, meaning there is no database required to store posts or pages. This results in a system that is faster, less error prone and requires very little time to setup.
 
 ## Installation
 
-1. Download an extract the latest version of Markdown-CMS
+1. Download an extract the latest version of Signpost
 2. Upload or deploy the files to your server
 3. Modify the 'base_url' value within `settings.php` to reflect your installation's location
 4. Sit back and enjoy the lack of installation time!
@@ -70,7 +70,7 @@ Any of these values can be accessed from within a theme's `.php` file. For examp
 
 ### Blog Creation
 
-One useful feature of Markdown-CMS is the ability to mimic a blog. It achieves this by providing a simple variable `$posts` that holds an array of `.md` files from the `content/posts` directory (with meta data for each one), which can then be iterated through. The following example shows how this can be achieved.
+One useful feature of Signpost is the ability to mimic a blog. It achieves this by providing a simple variable `$posts` that holds an array of `.md` files from the `content/posts` directory (with meta data for each one), which can then be iterated through. The following example shows how this can be achieved.
 
 ```php
 <?php foreach ($this->loop("posts") as $post) {
