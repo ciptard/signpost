@@ -1,12 +1,22 @@
 <?php include('header.php'); ?>
 
-<?php include('profile.php'); ?>
+
 
 <section class="container">
-<article>
-  <small><a href="<?php echo $config['base_url']; ?>">&larr; Back to homepage</a></small>
+
+<section class="content">
+
+
+
+  <h1><?php echo $page->title; ?></h1>
+  
   <?php echo $page->content; ?>
-</article>
+</section>
+
+<aside>
+<?php include('profile.php'); ?>
+</aside>
+
 </section>
 
 <?php include('footer.php'); ?>

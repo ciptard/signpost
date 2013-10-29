@@ -6,8 +6,10 @@
 	<title><?php if (!$page->is_front_page) { ?><?php echo $page->title; ?> | <?php } ?><?php echo $config['site_title'] ?></title>
   <link rel="stylesheet" href="<?php echo $config['theme_url']; ?>/css/normalize.css" />
 	<link rel="stylesheet" href="<?php echo $config['theme_url']; ?>/css/style.css" />
-  <script src="//use.typekit.net/yoi6rpo.js"></script>
-  <script>try{Typekit.load();}catch(e){}</script>
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <script src="<?php echo $config['theme_url']; ?>/js/rainbow-custom.min.js"></script>
 </head>
 <body>
+<header>
+<a href="<?php echo $config['base_url']; ?>" class="noline"><img src="https://0.gravatar.com/avatar/8488f27004816f33291f55d3abc97044?s=160" class="avatar" /></a>
+</header>
