@@ -12,7 +12,7 @@
     echo '<article>';
     echo '<span class="date">' . date('l, F n Y', $post->time) . '</span>';
     echo '<h1><a href="' . $post->url . '">' . $post->title . '</a></h1>';
-    
+        echo $post->content;
     echo '</article>';
   } ?>
 </section>

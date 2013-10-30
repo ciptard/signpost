@@ -8,7 +8,7 @@
 <p><strong>Instagram Photos</strong></p>
 <p class="thumbs"><?php
     // Supply a user id and an access token
-    $userid = "11777829";
+    $userid = "11777829";  
     $accessToken = "11777829.ab103e5.c6c19bce0af34a74861b855f261009d0";
 
     // Gets our data

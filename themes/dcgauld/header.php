@@ -6,7 +6,7 @@
 	<title><?php if (!$page->is_front_page) { ?><?php echo $page->title; ?> | <?php } ?><?php echo $config['site_title'] ?></title>
   <link rel="stylesheet" href="<?php echo $config['theme_url']; ?>/css/normalize.css" />
 	<link rel="stylesheet" href="<?php echo $config['theme_url']; ?>/css/style.css" />
-  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,700,300italic,700italic' rel='stylesheet' type='text/css'>
   <script src="<?php echo $config['theme_url']; ?>/js/rainbow-custom.min.js"></script>
 </head>
 <body>
