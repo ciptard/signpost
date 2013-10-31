@@ -11,5 +11,7 @@
 </head>
 <body>
 <header>
+<section class="container">
 <a href="<?php echo $config['base_url']; ?>" class="noline"><img src="https://0.gravatar.com/avatar/8488f27004816f33291f55d3abc97044?s=160" class="avatar" /></a>
+</section>
 </header>
