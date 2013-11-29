@@ -36,9 +36,9 @@ If a file cannot be found, `content/404.md` is used.
 
 The minimum requirements of a theme is to contain just one file, `default.php` (the default page template).
 
-You can change the theme Markdown-CMS uses by altering the `$config` array from within the `settings.php` file in the root directory of your installation.
+You can change the theme Signpost uses by altering the `$config` array from within the `settings.php` file in the root directory of your installation.
 
-The 'Page Template' meta value within any `.md` file is used to determine which theme file to use when displaying the post/page. For example if the value is set to 'fullwidth', Markdown-CMS will use the `fullwidth.php` theme template (located in the root of the current theme's directory) to display the post/page.
+The 'Page Template' meta value within any `.md` file is used to determine which theme file to use when displaying the post/page. For example if the value is set to 'fullwidth', Signpost will use the `fullwidth.php` theme template (located in the root of the current theme's directory) to display the post/page.
 
 ### Page Meta Markup
 
@@ -83,7 +83,7 @@ This would most probably be added to a `blog.php` theme template, and a blank pa
 
 ### Configuration
 
-Markdown-CMS also includes a configuration (`$config`) array, allowing you to access options from anywhere in your installation. Four settings are already included for you, however you can add your own values by editing the `settings.php` file (located in the root of your installation). The default options available to you are:
+Signpost also includes a configuration (`$config`) array, allowing you to access options from anywhere in your installation. Four settings are already included for you, however you can add your own values by editing the `settings.php` file (located in the root of your installation). The default options available to you are:
 
 * `$config['site_title']` - The title of your installation.
 * `$config['base_url']` - The URL of your installation.
